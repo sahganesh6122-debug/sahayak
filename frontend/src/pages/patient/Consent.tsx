@@ -1,40 +1,42 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Consent: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [agreed, setAgreed] = useState(false);
 
   return (
     <div>
-      <h2>Your Privacy & Consent</h2>
+      <h2>{t('consent.title')}</h2>
       <div style={{ display: 'grid', gap: '16px', marginTop: '24px' }}>
         <div style={{ padding: '16px', backgroundColor: 'var(--color-surface)', borderRadius: '8px', border: '1px solid var(--color-neutral-200)' }}>
-          <h3>📋 Why we collect your information</h3>
-          <p>To help the doctor understand your condition better before you meet.</p>
+          <h3>{t('consent.whyTitle')}</h3>
+          <p>{t('consent.whyText')}</p>
         </div>
         <div style={{ padding: '16px', backgroundColor: 'var(--color-surface)', borderRadius: '8px', border: '1px solid var(--color-neutral-200)' }}>
-          <h3>🔒 How it is kept secure</h3>
-          <p>Your data is encrypted and stored safely following medical standards.</p>
+          <h3>{t('consent.securityTitle')}</h3>
+          <p>{t('consent.securityText')}</p>
         </div>
         <div style={{ padding: '16px', backgroundColor: 'var(--color-surface)', borderRadius: '8px', border: '1px solid var(--color-neutral-200)' }}>
-          <h3>👨‍⚕️ Who will see your information</h3>
-          <p>Only your consulting doctor and authorized medical staff.</p>
+          <h3>{t('consent.accessTitle')}</h3>
+          <p>{t('consent.accessText')}</p>
         </div>
         <div style={{ padding: '16px', backgroundColor: 'var(--color-surface)', borderRadius: '8px', border: '1px solid var(--color-neutral-200)' }}>
-          <h3>🤖 About AI-assisted review</h3>
-          <p>AI helps summarize your history, but a qualified doctor will always verify it.</p>
+          <h3>{t('consent.aiTitle')}</h3>
+          <p>{t('consent.aiText')}</p>
         </div>
       </div>
       
       <div style={{ marginTop: '32px', display: 'flex', alignItems: 'center', gap: '8px' }}>
         <input type="checkbox" id="consent" checked={agreed} onChange={e => setAgreed(e.target.checked)} style={{ width: '20px', height: '20px' }} />
-        <label htmlFor="consent">I have read and understood the above. I consent to provide my clinical history.</label>
+        <label htmlFor="consent">{t('consent.agreement')}</label>
       </div>
 
       <div style={{ marginTop: '32px', display: 'flex', gap: '16px' }}>
-        <button onClick={() => navigate(-1)} style={{ padding: '12px 24px', backgroundColor: 'var(--color-neutral-200)', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>Go Back</button>
-        <button onClick={() => navigate('/patient-details')} disabled={!agreed} style={{ padding: '12px 24px', backgroundColor: agreed ? 'var(--color-primary)' : 'var(--color-neutral-200)', color: agreed ? 'white' : 'var(--color-neutral-600)', border: 'none', borderRadius: '8px', cursor: agreed ? 'pointer' : 'not-allowed' }}>I Agree & Continue</button>
+        <button onClick={() => navigate(-1)} style={{ padding: '12px 24px', backgroundColor: 'var(--color-neutral-200)', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>{t('common.back')}</button>
+        <button onClick={() => navigate('/patient-details')} disabled={!agreed} style={{ padding: '12px 24px', backgroundColor: agreed ? 'var(--color-primary)' : 'var(--color-neutral-200)', color: agreed ? 'white' : 'var(--color-neutral-600)', border: 'none', borderRadius: '8px', cursor: agreed ? 'pointer' : 'not-allowed' }}>{t('consent.continue')}</button>
       </div>
     </div>
   );

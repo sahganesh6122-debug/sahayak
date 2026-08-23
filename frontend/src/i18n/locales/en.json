@@ -4,5 +4,21 @@
     "subtitle": "Ministry of Ayush | All India Institute of Ayurveda",
     "start": "Start New Visit",
     "existing": "Existing Patient"
+  },
+  "consent": {
+    "title": "Your Privacy & Consent",
+    "whyTitle": "📋 Why we collect your information",
+    "whyText": "To help the doctor understand your condition better before you meet.",
+    "securityTitle": "🔒 How it is kept secure",
+    "securityText": "Your data is encrypted and stored safely following medical standards.",
+    "accessTitle": "👨‍⚕️ Who will see your information",
+    "accessText": "Only your consulting doctor and authorized medical staff.",
+    "aiTitle": "🤖 About AI-assisted review",
+    "aiText": "AI helps summarize your history, but a qualified doctor will always verify it.",
+    "agreement": "I have read and understood the above. I consent to provide my clinical history.",
+    "continue": "I Agree & Continue"
+  },
+  "common": {
+    "back": "Go Back"
   }
 }
