@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import i18n from '../../i18n';
 import { useAppContext } from '../../context/AppContext';
+import { Check, Globe2, Languages } from 'lucide-react';
 
 const LanguageSelect: React.FC = () => {
   const navigate = useNavigate();
@@ -14,14 +15,21 @@ const LanguageSelect: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Please select your preferred language</h2>
-      <div style={{ display: 'grid', gap: '16px', marginTop: '24px' }}>
-        <button onClick={() => selectLanguage('en')} style={{ padding: '24px', fontSize: '18px', borderRadius: '8px', border: '1px solid var(--color-neutral-200)', cursor: 'pointer' }}>🇮🇳 English</button>
-        <button onClick={() => selectLanguage('hi')} style={{ padding: '24px', fontSize: '18px', borderRadius: '8px', border: '1px solid var(--color-neutral-200)', cursor: 'pointer' }}>हिंदी (Hindi)</button>
-        <button onClick={() => selectLanguage('te')} style={{ padding: '24px', fontSize: '18px', borderRadius: '8px', border: '1px solid var(--color-neutral-200)', cursor: 'pointer' }}>తెలుగు (Telugu)</button>
+    <div className="language-page">
+      <span className="welcome-kicker"><Languages size={15} /> One step before your visit</span>
+      <h1>Choose your language</h1>
+      <p>Select the language you are most comfortable using. You can take your time.</p>
+      <div className="language-options">
+        <button className="language-card" onClick={() => selectLanguage('en')}>
+          <Globe2 size={24} /><span>English</span><small>Continue in English</small><Check size={18} />
+        </button>
+        <button className="language-card" onClick={() => selectLanguage('hi')}>
+          <Globe2 size={24} /><span>हिंदी</span><small>हिंदी में जारी रखें</small><Check size={18} />
+        </button>
+        <button className="language-card" onClick={() => selectLanguage('te')}>
+          <Globe2 size={24} /><span>తెలుగు</span><small>తెలుగులో కొనసాగించండి</small><Check size={18} />
+        </button>
       </div>
-      <p style={{ marginTop: '24px', color: 'var(--color-neutral-600)' }}>Note: Hindi and Telugu are prototype stubs — English is fully implemented.</p>
     </div>
   );
 };

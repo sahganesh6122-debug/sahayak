@@ -1,13 +1,18 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { HeartPulse, ShieldCheck } from 'lucide-react';
 
 const PatientLayout: React.FC = () => {
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <header style={{ padding: '16px', backgroundColor: 'var(--color-primary)', color: 'white' }}>
-        <h2>🏥 Sahayak</h2>
+    <div className="patient-shell">
+      <header className="patient-header">
+        <div className="patient-brand">
+          <span className="patient-brand-mark"><HeartPulse size={21} /></span>
+          <span className="patient-brand-name">Sahayak</span>
+        </div>
+        <span className="patient-header-note"><ShieldCheck size={16} /> Your information stays private</span>
       </header>
-      <main style={{ flex: 1, padding: '24px', maxWidth: '800px', margin: '0 auto', width: '100%' }}>
+      <main className="patient-main">
         <Outlet />
       </main>
     </div>

@@ -1,8 +1,10 @@
 :root {
-  /* Design tokens */
-  --color-primary: #1a73b8;
-  --color-primary-dark: #1557a0;
-  --color-primary-light: #e8f0fe;
+  --color-primary: #0b7285;
+  --color-primary-dark: #075985;
+  --color-primary-light: #dff6f4;
+  --color-navy: #12304a;
+  --color-teal: #13a6a0;
+  --color-coral: #f07c5a;
   --color-success: #1e7e34;
   --color-warning: #d97706;
   --color-danger: #dc2626;
@@ -15,8 +17,9 @@
   --color-neutral-900: #0f172a;
   --color-white: #ffffff;
   --color-surface: #ffffff;
-  --color-background: #f0f4f8;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-background: #edf7f7;
+  --font-sans: 'Trebuchet MS', 'Segoe UI', sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -40,6 +43,7 @@
 body {
   font-family: var(--font-sans);
   background-color: var(--color-background);
+  background-image: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(223,246,244,0.72));
   color: var(--color-neutral-900);
   line-height: 1.5;
 }
@@ -55,4 +59,271 @@ a:hover {
 
 input, textarea, select, button {
   font-family: inherit;
+}
+
+button {
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.patient-shell {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.patient-shell::before {
+  content: '';
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  right: -140px;
+  top: 110px;
+  border: 48px solid rgba(19, 166, 160, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.patient-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(20px, 5vw, 72px);
+  background: var(--color-navy);
+  color: var(--color-white);
+  box-shadow: 0 8px 24px rgba(18, 48, 74, 0.14);
+}
+
+.patient-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.patient-brand-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--color-teal);
+  color: white;
+}
+
+.patient-brand-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0;
+}
+
+.patient-header-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #c7e9e8;
+  font-size: 0.84rem;
+}
+
+.patient-main {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 40px, 1040px);
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 72px) 0;
+}
+
+.welcome-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(28px, 6vw, 76px);
+  align-items: center;
+  animation: rise-in 500ms ease both;
+}
+
+.welcome-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.welcome-copy h1 {
+  max-width: 600px;
+  color: var(--color-navy);
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  font-weight: 500;
+  line-height: 1.03;
+}
+
+.welcome-copy > p {
+  max-width: 500px;
+  margin-top: 22px;
+  color: var(--color-neutral-600);
+  font-size: 1.08rem;
+}
+
+.welcome-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+  padding: 15px 22px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--color-coral);
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.welcome-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 28px;
+  color: var(--color-neutral-600);
+  font-size: 0.88rem;
+}
+
+.welcome-trust span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.welcome-visual {
+  position: relative;
+  min-height: 370px;
+  padding: 30px;
+  border-radius: 28px;
+  background: var(--color-navy);
+  box-shadow: 0 18px 40px rgba(18, 48, 74, 0.2);
+  overflow: hidden;
+}
+
+.welcome-visual::after {
+  content: '';
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -68px;
+  bottom: -80px;
+  border: 34px solid rgba(240, 124, 90, 0.48);
+  border-radius: 50%;
+}
+
+.care-orbit {
+  position: absolute;
+  inset: 62px 54px 54px;
+  border: 1px solid rgba(199, 233, 232, 0.38);
+  border-radius: 50%;
+}
+
+.care-orbit::before,
+.care-orbit::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-teal);
+  box-shadow: 0 0 0 8px rgba(19, 166, 160, 0.16);
+}
+
+.care-orbit::before { top: 12%; left: 12%; }
+.care-orbit::after { right: 10%; bottom: 18%; background: var(--color-coral); }
+
+.care-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: white;
+}
+
+.care-center-icon {
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  border: 14px solid rgba(19, 166, 160, 0.28);
+  border-radius: 50%;
+  background: var(--color-teal);
+}
+
+.care-caption {
+  position: absolute;
+  left: 30px;
+  bottom: 25px;
+  color: #c7e9e8;
+  font-size: 0.85rem;
+}
+
+.language-page {
+  max-width: 680px;
+  margin: 0 auto;
+  animation: rise-in 500ms ease both;
+}
+
+.language-page h1 {
+  color: var(--color-navy);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 500;
+}
+
+.language-page > p {
+  margin-top: 10px;
+  color: var(--color-neutral-600);
+}
+
+.language-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.language-card {
+  display: grid;
+  gap: 8px;
+  min-height: 150px;
+  padding: 22px 16px;
+  border: 1px solid rgba(11, 114, 133, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--color-navy);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.language-card svg { color: var(--color-primary); }
+.language-card small { color: var(--color-neutral-600); font-weight: 400; }
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 720px) {
+  .patient-header-note { display: none; }
+  .welcome-grid { grid-template-columns: 1fr; }
+  .welcome-visual { min-height: 280px; }
+  .language-options { grid-template-columns: 1fr; }
+  .language-card { min-height: 92px; }
 }
