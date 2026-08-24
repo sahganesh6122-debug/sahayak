@@ -62,7 +62,7 @@ const AppRoutes = () => {
 function App() {
   return (
     <AppProvider>
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <AppRoutes />
       </Router>
     </AppProvider>
