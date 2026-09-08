@@ -92,7 +92,7 @@ export const registerBiometric = async (
       id: userId,
       username,
       role,
-      credentialId: arrayBufferToBase64(credential.id),
+      credentialId: arrayBufferToBase64(credential.id as unknown as ArrayBuffer),
       publicKey: 'public-key-' + Date.now(), // Simplified for demo
       registeredAt: new Date().toISOString()
     };
@@ -172,15 +172,16 @@ const arrayBufferToBase64 = (buffer: ArrayBuffer): string => {
 
 /**
  * Utility function to convert Base64 to ArrayBuffer
+ * (Reserved for future use)
  */
-const base64ToArrayBuffer = (base64: string): ArrayBuffer => {
-  const binary = atob(base64);
-  const bytes = new Uint8Array(binary.length);
-  for (let i = 0; i < binary.length; i++) {
-    bytes[i] = binary.charCodeAt(i);
-  }
-  return bytes.buffer;
-};
+// const base64ToArrayBuffer = (base64: string): ArrayBuffer => {
+//   const binary = atob(base64);
+//   const bytes = new Uint8Array(binary.length);
+//   for (let i = 0; i < binary.length; i++) {
+//     bytes[i] = binary.charCodeAt(i);
+//   }
+//   return bytes.buffer;
+// };
 
 /**
  * Get all registered biometric authenticators for a user

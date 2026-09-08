@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { validatePassword, getPasswordStrengthColor } from './passwordValidator';
+import { validatePassword, getPasswordStrengthColor } from '../utils/passwordValidator';
 
 interface PasswordStrengthIndicatorProps {
   password: string;
@@ -74,7 +74,7 @@ export const PasswordStrengthIndicator: React.FC<PasswordStrengthIndicatorProps>
             fontSize: '12px',
             color: '#b45309'
           }}>
-            {validation.errors.map((error, idx) => (
+            {validation.errors.map((error: string, idx: number) => (
               <li key={idx} style={{ margin: '4px 0' }}>
                 {error}
               </li>
