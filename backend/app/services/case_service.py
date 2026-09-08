@@ -1,25 +1,43 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from app.models.clinical_case import ClinicalCase
+from app.models.patient import Patient
 from app.models.history_answer import HistoryAnswer
 from app.models.ai_summary import AISummary
 from app.models.red_flag import RedFlag
 from app.ai.provider import get_ai_service
 
 async def generate_summary_for_case(case_id: str, db: AsyncSession):
-    case = await db.get(ClinicalCase, case_id)
+    result = await db.execute(
+        select(ClinicalCase).where(ClinicalCase.id == case_id)
+    )
+    case = result.scalar_one_or_none()
     if not case:
         return None
+
+    patient = await db.get(Patient, case.patient_id)
 
     history_result = await db.execute(
         select(HistoryAnswer).where(HistoryAnswer.case_id == case_id)
     )
-    history = {
-        answer.question_key: answer.answer_text
+    history = [
+        {
+            "question_key": answer.question_key,
+            "question": answer.question_text,
+            "answer": answer.answer_text,
+            "answer_type": answer.answer_type,
+        }
         for answer in history_result.scalars().all()
-    }
+    ]
     ai_service = get_ai_service()
     summary_data = ai_service.generate_summary({
+        "patient": {
+            "id": patient.id if patient else None,
+            "full_name": patient.full_name if patient else None,
+            "age": patient.age if patient else None,
+            "gender": patient.gender if patient else None,
+            "language_preference": patient.language_preference if patient else None,
+        },
         "chief_complaint": case.chief_complaint,
         "history": history,
     })
@@ -30,8 +48,14 @@ async def generate_summary_for_case(case_id: str, db: AsyncSession):
         summary = AISummary(case_id=case_id)
         db.add(summary)
 
+    summary.patient_overview = summary_data.get("patient_overview")
     summary.chief_complaint_summary = summary_data["chief_complaint_summary"]
     summary.history_summary = summary_data.get("history_summary")
+    summary.associated_symptoms = summary_data.get("associated_symptoms")
+    summary.past_history_summary = summary_data.get("past_history_summary")
+    summary.medication_summary = summary_data.get("medication_summary")
+    summary.allergies_summary = summary_data.get("allergies_summary")
+    summary.investigations_summary = summary_data.get("investigations_summary")
     summary.red_flag_summary = summary_data.get("red_flag_summary")
     summary.ai_narrative = (
         "AI-Generated — Requires Doctor Review\n\n"

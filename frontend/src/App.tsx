@@ -15,8 +15,10 @@ import OcrResults from './pages/patient/OcrResults';
 import Timeline from './pages/patient/Timeline';
 import AiSummaryReview from './pages/patient/AiSummaryReview';
 
+// Pages - Auth
+import UnifiedLogin from './pages/UnifiedLogin';
+
 // Pages - Doctor
-import DoctorLogin from './pages/doctor/DoctorLogin';
 import Dashboard from './pages/doctor/Dashboard';
 import CaseView from './pages/doctor/CaseView';
 
@@ -27,7 +29,7 @@ import DoctorLayout from './layouts/DoctorLayout';
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user } = useAppContext();
   if (!user || user.role !== 'doctor') {
-    return <Navigate to="/doctor/login" />;
+    return <Navigate to="/login" />;
   }
   return <>{children}</>;
 };
@@ -35,22 +37,25 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route element={<PatientLayout />}>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/language" element={<LanguageSelect />} />
-        <Route path="/consent" element={<Consent />} />
-        <Route path="/patient-details" element={<PatientDetails />} />
-        <Route path="/chief-complaint" element={<ChiefComplaint />} />
-        <Route path="/clinical-history" element={<ClinicalHistory />} />
-        <Route path="/adaptive-questions" element={<AdaptiveQuestions />} />
-        <Route path="/red-flags" element={<RedFlagScreen />} />
-        <Route path="/documents" element={<DocumentUpload />} />
-        <Route path="/ocr-results" element={<OcrResults />} />
-        <Route path="/timeline" element={<Timeline />} />
-        <Route path="/summary" element={<AiSummaryReview />} />
-      </Route>
+      {/* Default route - Login Page */}
+      <Route path="/" element={<UnifiedLogin />} />
+      <Route path="/login" element={<UnifiedLogin />} />
 
-      <Route path="/doctor/login" element={<DoctorLogin />} />
+      {/* Patient Portal Routes */}
+      <Route element={<PatientLayout />}>
+        <Route path="/patient/welcome" element={<Welcome />} />
+        <Route path="/patient/language" element={<LanguageSelect />} />
+        <Route path="/patient/consent" element={<Consent />} />
+        <Route path="/patient/details" element={<PatientDetails />} />
+        <Route path="/patient/chief-complaint" element={<ChiefComplaint />} />
+        <Route path="/patient/clinical-history" element={<ClinicalHistory />} />
+        <Route path="/patient/adaptive-questions" element={<AdaptiveQuestions />} />
+        <Route path="/patient/red-flags" element={<RedFlagScreen />} />
+        <Route path="/patient/documents" element={<DocumentUpload />} />
+        <Route path="/patient/ocr-results" element={<OcrResults />} />
+        <Route path="/patient/timeline" element={<Timeline />} />
+        <Route path="/patient/summary" element={<AiSummaryReview />} />
+      </Route>
       <Route element={<ProtectedRoute><DoctorLayout /></ProtectedRoute>}>
         <Route path="/doctor/dashboard" element={<Dashboard />} />
         <Route path="/doctor/cases/:caseId" element={<CaseView />} />

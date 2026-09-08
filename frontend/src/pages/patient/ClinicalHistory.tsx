@@ -22,7 +22,7 @@ const ClinicalHistory: React.FC = () => {
     if (activeSection < sections.length - 1) {
       setActiveSection(activeSection + 1);
     } else {
-      navigate('/adaptive-questions');
+      navigate('/patient/adaptive-questions');
     }
   };
 

@@ -30,7 +30,7 @@ const Timeline: React.FC = () => {
       </div>
 
       <div style={{ marginTop: '32px', display: 'flex', justifyContent: 'flex-end' }}>
-        <button onClick={() => navigate('/summary')} style={{ padding: '12px 24px', backgroundColor: 'var(--color-primary)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '16px' }}>Continue</button>
+        <button onClick={() => navigate('/patient/summary')} style={{ padding: '12px 24px', backgroundColor: 'var(--color-primary)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '16px' }}>Continue</button>
       </div>
     </div>
   );

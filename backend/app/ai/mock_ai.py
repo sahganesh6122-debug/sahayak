@@ -41,10 +41,21 @@ class MockAIService(AIService):
         ]
 
     def generate_summary(self, patient_data: dict) -> dict:
+        patient = patient_data.get("patient", {})
+        history = patient_data.get("history", [])
+        history_summary = "; ".join(
+            f"{item['question']}: {item['answer']}"
+            for item in history
+            if item.get("answer")
+        ) or "No additional history provided"
         return {
-            "patient_overview": str(patient_data.get("patient", {})),
+            "patient_overview": (
+                f"{patient.get('full_name') or 'Patient'}, "
+                f"{patient.get('age') or 'age unknown'} years, "
+                f"{patient.get('gender') or 'gender not recorded'}"
+            ),
             "chief_complaint_summary": patient_data.get("chief_complaint", ""),
-            "history_summary": "Extracted from history answers...",
+            "history_summary": history_summary,
             "associated_symptoms": "None reported",
             "past_history_summary": "No significant past history",
             "medication_summary": "Not on any current meds",

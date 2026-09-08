@@ -12,7 +12,7 @@ const AiSummaryReview: React.FC = () => {
         <h2>Success!</h2>
         <p>Your clinical history has been submitted.</p>
         <p>Case ID: <strong>CAS-{Math.floor(Math.random() * 10000)}</strong></p>
-        <button onClick={() => navigate('/')} style={{ marginTop: '24px', padding: '12px 24px', backgroundColor: 'var(--color-primary)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>Return to Home</button>
+        <button onClick={() => navigate('/login')} style={{ marginTop: '24px', padding: '12px 24px', backgroundColor: 'var(--color-primary)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>Return to Home</button>
       </div>
     );
   }

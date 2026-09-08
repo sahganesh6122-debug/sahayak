@@ -118,9 +118,20 @@ async def submit_history(case_id: str, data: HistorySubmit, db: AsyncSession = D
 
     answers = []
     for ans in data.answers:
-        h = HistoryAnswer(case_id=case_id, **ans.model_dump())
-        db.add(h)
-        answers.append(h)
+        result = await db.execute(
+            select(HistoryAnswer).where(
+                HistoryAnswer.case_id == case_id,
+                HistoryAnswer.question_key == ans.question_key,
+            )
+        )
+        history_answer = result.scalars().first()
+        if history_answer:
+            for field, value in ans.model_dump().items():
+                setattr(history_answer, field, value)
+        else:
+            history_answer = HistoryAnswer(case_id=case_id, **ans.model_dump())
+            db.add(history_answer)
+        answers.append(history_answer)
     await db.commit()
     for h in answers:
         await db.refresh(h)
@@ -189,6 +200,13 @@ async def get_summary(case_id: str, db: AsyncSession = Depends(get_db)):
     summary = res.scalar_one_or_none()
     if not summary:
         raise HTTPException(status_code=404, detail="Summary not found")
+    return summary
+
+@router.post("/{case_id}/summary", response_model=SummaryOut)
+async def generate_summary(case_id: str, db: AsyncSession = Depends(get_db)):
+    summary = await generate_summary_for_case(case_id, db)
+    if not summary:
+        raise HTTPException(status_code=404, detail="Case not found")
     return summary
 
 @router.put("/{case_id}/summary", response_model=SummaryOut)

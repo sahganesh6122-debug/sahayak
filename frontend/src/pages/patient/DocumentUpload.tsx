@@ -36,8 +36,8 @@ const DocumentUpload: React.FC = () => {
       )}
 
       <div style={{ marginTop: '32px', display: 'flex', gap: '16px', justifyContent: 'flex-end' }}>
-        <button onClick={() => navigate('/ocr-results')} style={{ padding: '12px 24px', backgroundColor: 'transparent', color: 'var(--color-neutral-600)', border: 'none', cursor: 'pointer', fontSize: '16px' }}>Skip</button>
-        <button onClick={() => navigate('/ocr-results')} disabled={files.length === 0} style={{ padding: '12px 24px', backgroundColor: files.length > 0 ? 'var(--color-primary)' : 'var(--color-neutral-200)', color: files.length > 0 ? 'white' : 'var(--color-neutral-600)', border: 'none', borderRadius: '8px', cursor: files.length > 0 ? 'pointer' : 'not-allowed', fontSize: '16px' }}>Continue</button>
+        <button onClick={() => navigate('/patient/ocr-results')} style={{ padding: '12px 24px', backgroundColor: 'transparent', color: 'var(--color-neutral-600)', border: 'none', cursor: 'pointer', fontSize: '16px' }}>Skip</button>
+        <button onClick={() => navigate('/patient/ocr-results')} disabled={files.length === 0} style={{ padding: '12px 24px', backgroundColor: files.length > 0 ? 'var(--color-primary)' : 'var(--color-neutral-200)', color: files.length > 0 ? 'white' : 'var(--color-neutral-600)', border: 'none', borderRadius: '8px', cursor: files.length > 0 ? 'pointer' : 'not-allowed', fontSize: '16px' }}>Continue</button>
       </div>
     </div>
   );

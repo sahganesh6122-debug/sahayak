@@ -20,7 +20,7 @@ const RedFlagScreen: React.FC = () => {
 
       <div style={{ marginTop: '32px', display: 'flex', gap: '16px', justifyContent: 'flex-end' }}>
         <button onClick={() => alert('Staff alerted!')} style={{ padding: '12px 24px', backgroundColor: 'white', color: 'var(--color-urgent)', border: '1px solid var(--color-urgent)', borderRadius: '8px', cursor: 'pointer', fontSize: '16px' }}>Alert Staff</button>
-        <button onClick={() => navigate('/documents')} style={{ padding: '12px 24px', backgroundColor: 'var(--color-urgent)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '16px' }}>Continue</button>
+        <button onClick={() => navigate('/patient/documents')} style={{ padding: '12px 24px', backgroundColor: 'var(--color-urgent)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '16px' }}>Continue</button>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const Welcome: React.FC = () => {
         <span className="welcome-kicker"><Sparkles size={15} /> A calmer way to begin care</span>
         <h1>{t('welcome.title')}</h1>
         <p>{t('welcome.subtitle')}</p>
-        <button className="welcome-action" onClick={() => navigate('/language')}>
+        <button className="welcome-action" onClick={() => navigate('/patient/language')}>
           {t('welcome.start')} <ArrowRight size={18} />
         </button>
         <div className="welcome-trust">

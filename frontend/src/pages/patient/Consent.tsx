@@ -36,7 +36,7 @@ const Consent: React.FC = () => {
 
       <div style={{ marginTop: '32px', display: 'flex', gap: '16px' }}>
         <button onClick={() => navigate(-1)} style={{ padding: '12px 24px', backgroundColor: 'var(--color-neutral-200)', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>{t('common.back')}</button>
-        <button onClick={() => navigate('/patient-details')} disabled={!agreed} style={{ padding: '12px 24px', backgroundColor: agreed ? 'var(--color-primary)' : 'var(--color-neutral-200)', color: agreed ? 'white' : 'var(--color-neutral-600)', border: 'none', borderRadius: '8px', cursor: agreed ? 'pointer' : 'not-allowed' }}>{t('consent.continue')}</button>
+        <button onClick={() => navigate('/patient/details')} disabled={!agreed} style={{ padding: '12px 24px', backgroundColor: agreed ? 'var(--color-primary)' : 'var(--color-neutral-200)', color: agreed ? 'white' : 'var(--color-neutral-600)', border: 'none', borderRadius: '8px', cursor: agreed ? 'pointer' : 'not-allowed' }}>{t('consent.continue')}</button>
       </div>
     </div>
   );

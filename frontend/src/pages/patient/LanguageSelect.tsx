@@ -11,7 +11,7 @@ const LanguageSelect: React.FC = () => {
   const selectLanguage = (language: 'en' | 'hi' | 'te') => {
     setLanguage(language);
     void i18n.changeLanguage(language);
-    navigate('/consent');
+    navigate('/patient/consent');
   };
 
   return (

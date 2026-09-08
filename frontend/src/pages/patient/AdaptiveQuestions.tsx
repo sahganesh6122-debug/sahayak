@@ -14,7 +14,7 @@ const AdaptiveQuestions: React.FC = () => {
     if (currentQ < questions.length - 1) {
       setCurrentQ(currentQ + 1);
     } else {
-      navigate('/red-flags');
+      navigate('/patient/red-flags');
     }
   };
 

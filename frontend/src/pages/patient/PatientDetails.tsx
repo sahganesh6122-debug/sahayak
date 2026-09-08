@@ -17,7 +17,7 @@ const PatientDetails: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setPatientData(formData as any);
-    navigate('/chief-complaint');
+    navigate('/patient/chief-complaint');
   };
 
   return (

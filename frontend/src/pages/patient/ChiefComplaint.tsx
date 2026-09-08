@@ -38,7 +38,7 @@ const ChiefComplaint: React.FC = () => {
       </div>
 
       <div style={{ marginTop: '32px', display: 'flex', justifyContent: 'flex-end' }}>
-        <button onClick={() => navigate('/clinical-history')} disabled={!complaint} style={{ padding: '12px 24px', backgroundColor: complaint ? 'var(--color-primary)' : 'var(--color-neutral-200)', color: complaint ? 'white' : 'var(--color-neutral-600)', border: 'none', borderRadius: '8px', cursor: complaint ? 'pointer' : 'not-allowed', fontSize: '16px' }}>Continue</button>
+        <button onClick={() => navigate('/patient/clinical-history')} disabled={!complaint} style={{ padding: '12px 24px', backgroundColor: complaint ? 'var(--color-primary)' : 'var(--color-neutral-200)', color: complaint ? 'white' : 'var(--color-neutral-600)', border: 'none', borderRadius: '8px', cursor: complaint ? 'pointer' : 'not-allowed', fontSize: '16px' }}>Continue</button>
       </div>
     </div>
   );
