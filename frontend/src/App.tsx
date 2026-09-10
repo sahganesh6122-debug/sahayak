@@ -14,6 +14,7 @@ import DocumentUpload from './pages/patient/DocumentUpload';
 import OcrResults from './pages/patient/OcrResults';
 import Timeline from './pages/patient/Timeline';
 import AiSummaryReview from './pages/patient/AiSummaryReview';
+import VoiceIntakePage from './pages/patient/VoiceIntakePage';
 
 // Pages - Auth
 import UnifiedLogin from './pages/UnifiedLogin';
@@ -47,6 +48,7 @@ const AppRoutes = () => {
         <Route path="/patient/language" element={<LanguageSelect />} />
         <Route path="/patient/consent" element={<Consent />} />
         <Route path="/patient/details" element={<PatientDetails />} />
+        <Route path="/patient/voice-intake" element={<VoiceIntakePage />} />
         <Route path="/patient/chief-complaint" element={<ChiefComplaint />} />
         <Route path="/patient/clinical-history" element={<ClinicalHistory />} />
         <Route path="/patient/adaptive-questions" element={<AdaptiveQuestions />} />

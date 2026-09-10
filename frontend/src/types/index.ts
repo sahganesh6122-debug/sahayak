@@ -98,3 +98,34 @@ export interface FullCase {
 
 export type CaseStatus = 'draft' | 'in_progress' | 'ready_for_review' | 'reviewed' | 'confirmed';
 export type Priority = 'normal' | 'attention' | 'urgent';
+
+export interface ExtractedClinicalData {
+  patient?: {
+    full_name?: string;
+    age?: number;
+    gender?: string;
+    phone_number?: string;
+  };
+  chief_complaint: string;
+  onset_and_duration?: string;
+  location_and_character?: string;
+  severity?: string;
+  associated_symptoms?: string[];
+  aggravating_relieving?: string;
+  past_medical_history?: string;
+  medications?: string;
+  allergies?: string;
+  family_history?: string;
+  ayurveda?: {
+    prakriti?: string;
+    dietary_habits?: string;
+    sleep_pattern?: string;
+    exercise_level?: string;
+  };
+  red_flags: RedFlag[];
+  clinical_summary: string;
+  history_answers: Record<string, string>;
+  transcript: string;
+  detected_language: string;
+}
+
